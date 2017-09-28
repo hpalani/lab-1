@@ -40,7 +40,7 @@ int main() {
     
     // Sort contents array in ASCII order.
     for (int i = 0; i < 100; i++) {
-        for (int j = 0; j < 100-i; j++) {
+        for (int j = 0; j < 100 - i; j++) {
             if (contents[j] > contents[j+1]) {
                 temp = contents[j];
                 contents[j] = contents[j+1];
@@ -49,8 +49,13 @@ int main() {
         }
     }
     
+    // Eliminate duplicate entries
+    TODO
+
     // Display results.
     for (int a = 0; a < 100; a++) {
-        cout << contents[a] << endl;
+        if (!contents[a].empty()) {
+            cout << contents[a] << endl;
+        }
     }
 }
