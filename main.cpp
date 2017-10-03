@@ -39,8 +39,8 @@ int main() {
     fileUtility.close();
     
     // Sort contents array in ASCII order.
-    for (int i = 0; i < 100; i++) {
-        for (int j = 0; j < 100 - i; j++) {
+    for (int i = 0; i < c; i++) {
+        for (int j = 0; j < c - i; j++) {
             if (contents[j] > contents[j+1]) {
                 temp = contents[j];
                 contents[j] = contents[j+1];
@@ -50,10 +50,21 @@ int main() {
     }
     
     // Eliminate duplicate entries
-    TODO
+    int i = 0;
+    while (i < c) {
+        int j = i+1;
+        if (contents[i] == contents[j]) {
+            for (int k = i; k < c; k++) {
+                contents[k] = contents[k+1];
+            }
+            c--;
+        } else {
+            i++;
+        }
+    }
 
     // Display results.
-    for (int a = 0; a < 100; a++) {
+    for (int a = 0; a < c; a++) {
         if (!contents[a].empty()) {
             cout << contents[a] << endl;
         }
