@@ -1,16 +1,8 @@
- /**
- * Lab 1
- * CS 250
- * 
- * Create a standard C++ program that prompts the user for the full path name of
- * an input text file. The program should open the input text file, make a list
- * of all words contained in the file, close the file, and then display the list
- * of words found in the file to the standard output. The list should be displayed
- * in alphabetical (ASCII) order, and each word should appear no more than one time 
- * in the list (i.e. eliminate duplicate entries).
- * 
- * @author Harish Palani
- * @version September 26, 2017
+ /*
+ NAME: Harish Palani
+ CRN: 41600
+ ASSIGNMENT: Lab 1
+ SOURCES: stackoverflow.com
  */
 
 #include <iostream>
@@ -23,50 +15,51 @@ int main() {
     string path;
     string temp;
     ifstream fileUtility;
-    string contents[100];
+    string contents[128];
     
     // Accept input file path.
-    cout << "Enter input file name below." << endl;
+    cout << "Enter input file name below." 
+         << endl;
     cin >> path;
     
     // Load array with unsorted input file contents.
-    int c = 0;
+    int size = 0;
     fileUtility.open(path);
     while (!fileUtility.eof()) {
-        fileUtility >> contents[c];
-        c++;
+        fileUtility >> contents[size];
+        size++;
     }
     fileUtility.close();
     
     // Sort contents array in ASCII order.
-    for (int i = 0; i < c; i++) {
-        for (int j = 0; j < c - i; j++) {
-            if (contents[j] > contents[j+1]) {
-                temp = contents[j];
-                contents[j] = contents[j+1];
-                contents[j+1] = temp;
+    for (int g = 0; g < size; g++) {
+        for (int h = 0; h < size - g; h++) {
+            if (contents[h] > contents[h + 1]) {
+                temp = contents[h];
+                contents[h] = contents[h + 1];
+                contents[h + 1] = temp;
             }
         }
     }
     
-    // Eliminate duplicate entries
+    // Eliminate duplicate entries.
     int i = 0;
-    while (i < c) {
-        int j = i+1;
+    while (i < size) {
+        int j = i + 1;
         if (contents[i] == contents[j]) {
-            for (int k = i; k < c; k++) {
-                contents[k] = contents[k+1];
+            for (int k = i; k < size; k++) {
+                contents[k] = contents[k + 1];
             }
-            c--;
+            size--;
         } else {
             i++;
         }
     }
 
     // Display results.
-    for (int a = 0; a < c; a++) {
-        if (!contents[a].empty()) {
-            cout << contents[a] << endl;
+    for (int l = 0; l < size; l++) {
+        if (!contents[l].empty()) {
+            cout << contents[l] << endl;
         }
     }
 }
